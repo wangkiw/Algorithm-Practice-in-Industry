@@ -53,7 +53,7 @@ jobs:
       - name: Send WeChat Notification
         if: steps.commit.outputs.push == 'true'
         run: |
-          curl -X POST ${{ secrets.weixin }} \
+          curl -X POST ${{ secrets.WEIXIN }} \
           -H 'Content-Type: application/json' \
           -d '{
                 "msgtype": "text",
