@@ -13,7 +13,7 @@ HEADERS = {
 }
 
 URL = os.environ.get("CONF_URL", None)
-SERVERCHAN_API_KEY = os.environ.get("SERVERCHAN_API_KEY", None)
+WEIXIN_BOT = os.environ.get("WEIXIN_BOT", None)
 LIMITS = int(os.environ.get('LIMITS', 4))
 ERROR_LIMITS = int(os.environ.get('ERROR_LIMITS', 1))
 INTERVAL = int(os.environ.get("INTERVAL", 3))
@@ -185,8 +185,8 @@ def cronjob(error_cnt):
         push_title = f'{conf}[{ii}]@{today}'
         msg_content = f"[{msg_title}]({url})\n\n{msg_author}\n\n{msg_org}\n\n{msg_url}\n\n{msg_translated}\n\n{msg_summary}\n\n"
 
-        # send_wechat_message(push_title, msg_content, SERVERCHAN_API_KEY)
-        send_feishu_message(push_title, msg_content, FEISHU_URL)
+        send_wechat_message(push_title, msg_content, WEIXIN_BOT)
+        # send_feishu_message(push_title, msg_content, FEISHU_URL)
 
         time.sleep(12)
 
