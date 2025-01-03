@@ -68,13 +68,29 @@ def search_arxiv_papers(search_term, max_results=10):
     return papers
 
 
-def send_wechat_message(title, content, SERVERCHAN_API_KEY):
-    url = f'https://sctapi.ftqq.com/{SERVERCHAN_API_KEY}.send'
-    params = {
-        'title': title,
-        'desp': content,
+# def send_wechat_message(title, content, SERVERCHAN_API_KEY):
+#     url = f'https://sctapi.ftqq.com/{SERVERCHAN_API_KEY}.send'
+#     params = {
+#         'title': title,
+#         'desp': content,
+#     }
+#     requests.post(url, params=params)
+
+def send_wechat_message(title, content, WECHAT_WORK_ROBOT_URL):
+    url = WECHAT_WORK_ROBOT_URL
+    headers = {"Content-Type": "application/json"}
+
+    data = {
+        "msgtype": "text",
+        "text": {
+            "content": f"{title}\n{content}"
+        }
     }
-    requests.post(url, params=params)
+
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+
+    if response.status_code != 200:
+        raise ValueError(f"Request to WeChat Work Robot returned an error {response.status_code}, the response is:\n{response.text}")
 
 def send_feishu_message(title, content, url=FEISHU_URL):
     card_data = {
