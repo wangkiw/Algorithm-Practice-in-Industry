@@ -13,10 +13,8 @@ jobs:
   daily-push:
     runs-on: ubuntu-latest
     env:
-      SERVERCHAN_API_KEY: ${{ secrets.SERVERCHAN_API_KEY }}
-      CAIYUN_TOKEN: ${{ secrets.CAIYUN_TOKEN }}
-      CONF_URL: ${{ secrets.CONF_URL }}
-      FEISHU_URL: ${{ secrets.FEISHU_URL }}
+      WEIXIN_BOT: ${{ secrets.WEIXIN_BOT }}
+      CONF_URL: ${{ secrets.CONF_URL }} # TODO
       INTERVAL: 5
       LIMITS: 10
       ERROR_LIMITS: 5
